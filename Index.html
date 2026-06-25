@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freya's All-In-One Hub</title>
+    <style>
+        /* Modern Reset & Fluid Physics Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        :root {
+            /* Luxury Color Palette */
+            --bg-deep: #050814;
+            --pink-neon: #ff2a85;
+            --gold-bright: #f3b043;
+            --blue-glow: #00f0ff;
+            --text-pure: #ffffff;
+            --text-dim: #94a3b8;
+            
+            /* High-End Glass Effects */
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-speed: cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 3rem 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Light Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+        .orb-pink {
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--pink-neon);
+        }
+        .orb-gold {
+            bottom: -15%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--gold-bright);
+            animation-delay: -5s;
+        }
+
+        /* Layout Container */
+        .hub-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            z-index: 1;
+        }
+
+        /* Animated Typography Header */
+        header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        /* Premium multi-stop gradient for your signature branding */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--pink-neon) 0%, #d946ef 40%, var(--gold-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* Clean Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Next-Gen Glassmorphic Card Engine */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-decoration: none;
+            color: var(--text-pure);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: 
+                transform 0.5s var(--glass-speed), 
+                background-color 0.5s var(--glass-speed), 
+                border-color 0.5s var(--glass-speed),
+                box-shadow 0.5s var(--glass-speed);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Seamless Active Glow Edge Overlay */
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px;
+            background: linear-gradient(135deg, var(--pink-neon), var(--gold-bright));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s var(--glass-speed);
+        }
+
+        /* Hover Mechanics */
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(255, 42, 133, 0.15);
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        /* High-Definition Icon Spaces */
+        .icon-container {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            transition: transform 0.6s var(--glass-speed), background 0.5s ease;
+        }
+
+        .card:hover .icon-container {
+            transform: scale(1.15) rotate(-8deg);
+            background: linear-gradient(135deg, var(--pink-neon), var(--gold-bright));
+            border-color: transparent;
+        }
+
+        /* Typography & Visual Details */
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 {
+            color: var(--gold-bright);
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Background Drift Animation Physics */
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
+        }
+
+        /* Responsive Layout Optimization */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            body { padding: 2rem 1rem; }
+            .card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Floating Visual Layers -->
+    <div class="orb orb-pink"></div>
+    <div class="orb orb-gold"></div>
+
+    <div class="hub-wrapper">
+        <header>
+            <h1><span class="gradient-text">Freya's</span> All-In-One Hub</h1>
+            <p>A beautifully curated workspace for creative ideas and digital assets</p>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- App Card 1 -->
+            <a href="#" class="card">
+                <div class="icon-container">🔮</div>
+                <h3>Project Space</h3>
+                <p>Manage your daily progress, clean creative logs, and dynamic web blueprints.</p>
+            </a>
+
+            <!-- App Card 2 -->
+            <a href="#" class="card">
+                <div class="icon-container">💎</div>
+                <h3>Media Gallery</h3>
+                <p>Curate custom artwork, visual aesthetics, and soundscapes in one localized stream.</p>
+            </a>
+
+            <!-- App Card 3 -->
+            <a href="#" class="card">
+                <div class="icon-container">⚡</div>
+                <h3>Custom Tools</h3>
+                <p>Access high-performance micro-utilities and custom built-in productivity engines.</p>
+            </a>
+        </main>
+    </div>
+
+</body>
+</html>
